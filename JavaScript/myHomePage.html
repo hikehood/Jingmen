@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- 20231222 JavaScript与html学习
+网页绘图，具体没学，用时现查
+https://www.runoob.com/w3cnote/html5-canvas-intro.html
+查询用：HTML 参考手册-标签列表
+https://www.runoob.com/tags/html-reference.html
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>MyHomePageZaDi</title>
+
+<script>
+function myFunction(){
+	document.getElementById("demo").innerHTML=
+	"my第一个 JavaScript 函数";
+}
+</script>
+
+<script src="myJavaScript.js"></script><!--//这里面有 myFunction2()-->
+</head>
+
+
+
+
+<body>
+
+
+
+<!-- -->
+<!-- 文档中的一个区域将显示为蓝色： -->
+
+<div style="color:#0000FF">
+<h1>第一个标题</h1> 
+<p>第一个段落。</p>
+<p id="demo">(5+6)*10</p>
+<p>(5+6)*10</p>
+<p id="demo2"></p>
+
+<br>//空行
+不计算//直接写没空行
+是是是
+啊啊啊
+别别别<br>
+冲冲冲
+(5+6)*10
+<p>hr 标签定义水平线：</p>
+<hr />
+<script>document.write("time= "+Date().toString()<br>);</script>
+</div>
+
+<button type="button" onclick="myFunction()">标题里的func</button>
+<button type="button" onclick="myFunction2()">文件里的func</button>
+
+<!--
+<p><b>注释：</b>myFunction 保存在名为 "myScript.js" 的外部文件中。
+	外部脚本不能包含 '<'script'>' 标签。</p>-->
+
+<script>
+function func3_重写(){
+    document.write("使用函数来执行document.write，\
+		即在文档加载后再执行这个操作，会实现文档覆盖");
+}
+function func4_控制台()
+{
+	window.alert(5 + 6);//window.alert() 方法可以不带上window对象
+	var r=confirm("选择确定或取消");//选择确定返回true
+	var person=prompt("请输入你的名字","Harry Potter");
+	if (person!=null && person!="")
+	{
+		x="你好 " + person + "! 今天感觉如何?";
+		document.getElementById("demo2").innerHTML=x;
+	}
+	document.getElementById("demo").innerHTML = "第二个段落的段落已修改。";
+}
+function func5计算()
+{
+	document.getElementById("demo").innerHTML = 16 + "Volvo";<!--//(5+6)*11;//这样替换原始可以计算数值，直接写在p标签里是字符串不计算-->
+}
+document.write("<h1>这是一个script标题</h1>");<!--//这里就是输出流-->
+document.write("<p>这是一个script段落。</p>");<!--//页面显示，但是鼠标悬浮不联动-->
+
+console.log("demo");<!--//输出到控制台，页面不显示。-->
+<!--debugger;//debugger 关键字用于停止执行 JavaScript -->
+</script>
+
+<!--
+<p>
+您只能在 HTML 输出流中使用 <strong>document.write</strong>。
+如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+</p>
+-->
+
+<button type="button" onclick="func3_重写()">func3_重写</button><!--点击按钮就意味着是在加载后又使用了document.write-->
+<button type="button" onclick="func4_控制台()">func4弹窗</button>
+<button type="button" onclick="func5计算()">func5计算</button>
+
+<!--
+应用注释符号验证浏览器是否支持 JavaScript 脚本功能<br>
+
+如果用户不能确定浏览器是否支持JavaScript脚本，那么可以应用HTML提供的注释符号进行验证。HTML注释符号是以 <!-- 开始以 /'--/>' 结束的。如果在此注释符号内编写 JavaScrip t脚本，对于不支持 JavaScript 的浏览器，将会把编写的 JavaScript 脚本作为注释处理。
+
+使用 JavaScript 脚本在页面中输出一个字符串，将 JavaScript 脚本编写在 HTML 注释中，如果浏览器支持 JavaScript 将输出此字符串，如果不支持将不输出此字符串，代码如下:
+-->
+<script>
+<!--
+document.write("您的浏览器支持JavaScript脚本!");
+//-->
+</script>
+<!--注意：注释行结尾处的两条斜杠 // 是 JavaScript 注释符号。这可以避免 JavaScript 执行 -/-> 标签。<br>-->
+
+<abbr title="etcetera">etc.</abbr>
+<br />
+<acronym title="World Wide Web">WWW</acronym>
+
+<!--<p>在某些浏览器中，当您把鼠标移至缩略词语上时，title 可用于展示表达的完整版本。</p>-->
+<p>该段落文字从左到右显示。</p>  
+<p><bdo dir="rtl">该段落文字从右到左显示。</bdo></p>  
+<p>My favorite color is <del>blue</del> <ins>red</ins>!</p>
+<style>p.important {color:green;}</style> <!-- 可以放在head标签里作为全局属性 规定元素的类名（classname）-->
+<p class="important">注意：这是一个很重要的段落。 :)</p>
+
+<hr>
+
+<script>
+function displayResult()
+{
+	var x;
+	if(window.event) // IE8 及更早IE版本
+	{
+		x=event.keyCode;
+	}
+	else if(event.which) // IE9/Firefox/Chrome/Opera/Safari
+	{
+		x=event.which;
+	}
+	var keychar=String.fromCharCode(x);
+	alert("按键 " + keychar + " 被按下");
+}
+function ondblclick2()
+{
+	document.getElementById("field2").value="你双击了？";
+}
+
+function DrawCanvas()
+{
+	var ctx=document.getElementById("myCanvas").getContext("2d");
+	ctx.clearRect(10,100,230,230);//context.clearRect(x,y,width,height);
+
+	var gradient=ctx.createRadialGradient(120,225,110,120,225,10);
+	gradient.addColorStop("0","lemonchiffon");
+	gradient.addColorStop("1.0","Ivory");
+	ctx.fillStyle=gradient;
+	ctx.fillRect(10,100,230,230);
+
+	gradient=ctx.createLinearGradient(0,0,c.width,0);
+	gradient.addColorStop("0","red");
+	gradient.addColorStop("0.5","orange");
+	gradient.addColorStop("1.0","red");
+	ctx.fillStyle=gradient;
+
+	ctx.font="200px Arial";
+	var keychar = String.fromCharCode(event.which);
+	ctx.fillText(keychar,50,290);
+	document.getElementById("field3").value = "text2= " + keychar[0];
+}
+</script>
+
+<p>当用户在输入域按下按键时触发函数。 该功能提醒按下的键。</p>
+
+<input type="text" id="field2" ondblclick="ondblclick2()" onkeydown="displayResult()" value="text1">
+<!--type可以为button -->
+<input type="text" id="field3" onkeydown="DrawCanvas()" value="text2">
+
+<hr>
+<canvas id="myCanvas" width="250" height="350" style="border:2px solid #d3d3d3;">
+您的浏览器不支持 HTML5 canvas 标签。
+</canvas>
+<script>
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+ctx.fillStyle="lemonchiffon";
+ctx.fillRect(0,0,300,350);
+
+ctx.fillStyle = "#FF0000";
+ctx.font="20px Georgia";
+ctx.fillText(": Hello World!",10,50);
+ctx.font="30px Verdana";
+// 创建一个渐变
+var gradient=ctx.createLinearGradient(0,0,c.width,0);
+gradient.addColorStop("0","magenta");
+gradient.addColorStop("0.5","blue");
+gradient.addColorStop("1.0","red");
+// 填充一个渐变
+ctx.fillStyle=gradient;
+let fillText = "Big smile!";
+ctx.fillText(fillText,10,90);
+
+</script>
+
+<!-- -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
